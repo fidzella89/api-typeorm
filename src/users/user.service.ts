@@ -25,27 +25,23 @@ export class UserService {
         throw new Error(`The Email "${userData.email}" is already registered.`);
     }
 
-    // Hash password if provided
     if (userData.password) {
         userData.passwordHash = await bcrypt.hash(userData.password, 10);
     }
 
-    // Create user instance
     const newUser = this.userRepository.create(userData);
 
-    // Save to database
     const savedUser = await this.userRepository.save(newUser);
     
     return { message: "User added successfully", user: savedUser };
   }
   
   async updateUser(id: string, userData: Partial<User>): Promise<{ message: string; user: User } | null> {
-    const user = await this.getUserById(id); // Now finds by UUID (string)
+    const user = await this.getUserById(id); 
     if (!user) {
         throw new Error("User not found.");
     }
 
-    // Check if email already exists for another user
     if (userData.email) {
         const existingUser = await this.userRepository.findOne({ where: { email: userData.email } });
         if (existingUser && existingUser.id !== id) {
@@ -53,7 +49,6 @@ export class UserService {
         }
     }
 
-    // Hash password if provided
     if (userData.password) {
         userData.passwordHash = await bcrypt.hash(userData.password, 10);
         delete userData.password;
