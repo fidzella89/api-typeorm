@@ -1,0 +1,36 @@
+{
+    "name": "montemar_api_typeorm",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/server.js",
+        "dev": "tsx watch src/server.ts"
+    },
+    "dependencies": {
+        "@types/bcryptjs": "^2.4.6",
+        "@types/hapi__joi": "^17.1.15",
+        "bcrypt": "^5.1.1",
+        "bcryptjs": "^3.0.2",
+        "cors": "^2.8.5",
+        "express": "^4.21.2",
+        "joi": "^17.13.3",
+        "mysql2": "^3.13.0",
+        "reflect-metadata": "^0.2.2",
+        "rootpath": "^0.1.2",
+        "sequelize": "^6.37.6",
+        "sqlite3": "^5.1.7"
+    },
+    "devDependencies": {
+        "@types/bcrypt": "^5.0.2",
+        "@types/cors": "^2.8.17",
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.13.10",
+        "nodemon": "^3.1.9",
+        "ts-node": "^10.9.2",
+        "tsx": "^4.19.3",
+        "typeorm": "^0.3.21",
+        "typescript": "^5.8.2"
+    }
+}
