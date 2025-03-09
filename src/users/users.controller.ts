@@ -47,37 +47,35 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-      const result = await userService.createUser(req.body);
-      return res.status(201).json(result);
+    const result = await userService.createUser(req.body);
+    return res.status(201).json(result);
   } catch (error: any) {
-      return res.status(400).json({
-          message: "Error creating user",
-          error: error.message || "Unknown error",
-      });
+    return res.status(400).json({
+      message: "Error creating user",
+      error: error.message || "Unknown error",
+    });
   }
 };
 
-export const updateUser = async (req: Request, res: Response): Promise<void> => {
+export const updateUser = async (req: Request, res: Response) => {
   try {
-      const userId = req.params.id; 
+    const userId = req.params.id;
 
-      if (!userId || typeof userId !== "string") {
-          res.status(400).json({ message: "Invalid user ID" });
-          return;
-      }
+    if (!userId || typeof userId !== "string") {
+      return res.status(400).json({ message: "Invalid user ID" });
+    }
 
-      const updatedUser = await userService.updateUser(userId, req.body);
-      if (!updatedUser) {
-          res.status(404).json({ message: "User not found" });
-          return;
-      }
+    const updatedUser = await userService.updateUser(userId, req.body);
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-      res.json(updatedUser);
+    return res.json(updatedUser);
   } catch (error: any) {
-      res.status(400).json({
-          message: "Error updating user",
-          error: error.message || "Unknown error",
-      });
+    return res.status(400).json({
+      message: "Error updating user",
+      error: error.message || "Unknown error",
+    });
   }
 };
 
